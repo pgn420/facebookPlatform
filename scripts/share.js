@@ -14,6 +14,7 @@ function createShare() {
   createButton(streamPublishContainer, 'Stream Publish Open Graph', 'streamPublishOpenGraph');
   createButton(streamPublishContainer, 'Stream Publish Open Graph Wide', 'streamPublishOpenGraphWide');
   createButton(streamPublishContainer, 'Stream Publish Open Graph Square', 'streamPublishOpenGraphSquare');
+  createButton(streamPublishContainer, 'Share photo', 'sharePhoto');
 }
 
 function feedDialog() {
@@ -144,6 +145,15 @@ function streamPublishOpenGraphSquare() {
     cake: "https://platformtest.herokuapp.com/cakenormal.html",
     ref: 'spogs',
     'fb:explicitly_shared' : 'true'
+  }, fbCallback
+  );
+}
+
+//investigate how to share photo using parameter source
+function sharePhoto() {
+	FB.api("me/photos", "post", {
+    url: "https://platformtest.herokuapp.com/1200630.jpg",
+    message: 'My awesome photo'
   }, fbCallback
   );
 }

@@ -1,5 +1,5 @@
 var gAppUrl = 'http://apps.facebook.com/platfom';
-var gCoinsObjectURL = gAppUrl + '/coin.html';
+var gCoinsObjectURL = 'http://platformtest.herokuapp.com/coin.html';
 
 function createSection(label, p_id) {
   var para = $('<p>', {text: label}).appendTo('#stage');
