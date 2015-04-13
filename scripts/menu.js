@@ -158,7 +158,7 @@ function sendDialog() {
 }
 
 function sendA2U() {
-	$.get("a2u.php", {fbid: gPlayerFBID, apptoken: document.getElementById("access_token").value}, fbCallback);
+	$.get("a2u.php", {fbid: gPlayerFBID, access_token: document.getElementById("access_token").value}, fbCallback);
 }
 
 function fbCallback(response) {
