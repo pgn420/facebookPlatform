@@ -40,6 +40,7 @@ function createMenu() {
 
   var a2uContainer = createSection('App to User Notification', 'a2u_container');
   createButton(a2uContainer, 'Send A2U', 'sendA2U');
+  $('<input/>').attr({ type: 'text', id: 'access_token', value: 'access_token'}).appendTo(a2uContainer);
 
   createAppEvents();
 }
@@ -157,7 +158,7 @@ function sendDialog() {
 }
 
 function sendA2U() {
-	$.get("a2u.php", {fbid: gPlayerFBID}, fbCallback);
+	$.get("a2u.php", {fbid: gPlayerFBID, apptoken: document.getElementById("access_token").value}, fbCallback);
 }
 
 function fbCallback(response) {
