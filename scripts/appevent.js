@@ -1,5 +1,6 @@
 function createAppEvents() {
   var appEventsContainer = createSection('App Events', 'app_events_container');
+  createButton(appEventsContainer, 'ActivateApp', 'eventActivateApp');
   createButton(appEventsContainer, 'Tutorial', 'eventTutorial');
   createButton(appEventsContainer, 'Registration', 'eventRegistration');
   createButton(appEventsContainer, 'Achievement', 'eventAchievement');
@@ -11,6 +12,10 @@ function createAppEvents() {
 
   createButton(appEventsContainer, 'Level Achieved', 'eventLevel');
   $('<input/>').attr({ type: 'text', id: 'levelField', value: 'Dungeon 1'}).appendTo(appEventsContainer);
+}
+
+function eventActivateApp() {
+  FB.AppEvents.activateApp();
 }
 
 function eventTutorial() {  
