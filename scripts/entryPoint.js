@@ -9,6 +9,8 @@ window.onload = function() {
 };
 
 function init() {
+  FB.AppEvents.activateApp();
+
   console.log('Welcome!  Fetching your information.... ');
 
   FB.getLoginStatus(function(response) {
@@ -17,14 +19,13 @@ function init() {
     });
 
     if (response.status === 'connected') {
-     FB.AppEvents.activateApp();
-
-     console.log('Access Token: ' + response.authResponse.accessToken);
-     gAccessToken = response.authResponse.accessToken;
-     gPlayerFBID = response.authResponse.userID;
-     console.log("player id " + gPlayerFBID);
-     buildProfile(gPlayerFBID);
-     createMenu();
+      
+      console.log('Access Token: ' + response.authResponse.accessToken);
+      gAccessToken = response.authResponse.accessToken;
+      gPlayerFBID = response.authResponse.userID;
+      console.log("player id " + gPlayerFBID);
+      buildProfile(gPlayerFBID);
+      createMenu();
    }
  });
 }
