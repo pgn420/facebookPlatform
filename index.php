@@ -38,6 +38,7 @@
       if (response.authResponse) {        
         init();
       } else {
+        init();
         console.log('User cancelled login or did not fully authorize.');
       }
     }, {
