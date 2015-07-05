@@ -1,66 +1,60 @@
 function createAppEvents() {
   var appEventsContainer = createSection('App Events', 'app_events_container');
 
-  createButton(appEventsContainer, 'Tutorial', 'eventTutorial');
-  var selectTutorial = document.createElement('select');
-  selectTutorial.id = 'select_tutorial';
-  appEventsContainer.append(selectTutorial);
-  for (var i = 0; i < tutorialEvents.length; i++) {
-    var option = document.createElement('option');
-    option.value = i;
-    option.innerHTML = tutorialEvents[i].displayName;
-    selectTutorial.appendChild(option);
-  };
-
-  createButton(appEventsContainer, 'Registration', 'eventRegistration');
-  createButton(appEventsContainer, 'Achievement', 'eventAchievement');
-  createButton(appEventsContainer, 'Purchase', 'eventPurchase');
-  $('<input/>').attr({ type: 'text', id: 'purchaseField', value: '19.9'}).appendTo(appEventsContainer);
+  createAppEventButton(appEventsContainer, 'Tutorial', 'eventTutorial', tutorialEvents, 'select_tutorial');
+  createAppEventButton(appEventsContainer, 'Registration', 'eventRegistration', registrationEvents, 'select_registration');
+  createAppEventButton(appEventsContainer, 'Achievement', 'eventAchievement', achievementEvents, 'select_achievement');
+  createAppEventButton(appEventsContainer, 'Purchase', 'eventPurchase', purchaseEvents, 'select_purchase');
+  createAppEventButton(appEventsContainer, 'PlayerLevel', 'eventLevel', levelEvents, 'select_level');
 
   createButton(appEventsContainer, 'Custom Event', 'eventCustom');
-  $('<input/>').attr({ type: 'text', id: 'customField', value: 'fridayNightOldFashioned'}).appendTo(appEventsContainer);
+  $('<input/>').attr({ type: 'text', id: 'custom_event_name', value: 'eventName'}).appendTo(appEventsContainer);
+  $('<input/>').attr({ type: 'text', id: 'custom_event_param_name', value: 'paramName'}).appendTo(appEventsContainer); 
+  $('<input/>').attr({ type: 'text', id: 'custom_event_param_value', value: 'paramValue'}).appendTo(appEventsContainer)
+}
 
-  createButton(appEventsContainer, 'Level Achieved', 'eventLevel');
-  $('<input/>').attr({ type: 'text', id: 'levelField', value: 'Dungeon 1'}).appendTo(appEventsContainer);
+function createAppEventButton(container, label, func, data, selector) {
+  createButton(container, label, func);
+  var selectOptions = document.createElement('select');
+  selectOptions.id = selector;
+  container.append(selectOptions);
+  for (var i = 0; i < data.length; i++) {
+    var option = document.createElement('option');
+    option.value = i;
+    option.innerHTML = data[i].displayName;
+    selectOptions.appendChild(option);
+  };
 }
 
 function eventTutorial() {
-  FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_TUTORIAL, null, tutorialEvents[document.getElementById('select_tutorial').value].params);
+  FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_TUTORIAL, null, 
+    tutorialEvents[document.getElementById('select_tutorial').value].params);
 }
 
 function eventRegistration() {
-  var params = {};
-  params[FB.AppEvents.ParameterNames.REGISTRATION_METHOD] = 'Facebook';
-  FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_REGISTRATION, null, params);
+    FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_REGISTRATION, null, 
+    tutorialEvents[document.getElementById('select_registration').value].params);
+}
+
+function eventAchievement() {
+  FB.AppEvents.logEvent(FB.AppEvents.EventNames.UNLOCKED_ACHIEVEMENT, null, 
+    tutorialEvents[document.getElementById('select_achievement').value].params);
 }
 
 function eventPurchase() {
-  var purchaseAmt = Number(document.getElementById("purchaseField").value);
-  console.log('purchaseAmt ' + purchaseAmt);
-  var params = {};
-  params[FB.AppEvents.ParameterNames.CONTENT_ID] = 'QW-12345';
-  FB.AppEvents.logPurchase(purchaseAmt, 'USD', params);
+  var selectedObject = purchaseEvents[document.getElementById('select_purchase').value];
+  FB.AppEvents.logPurchase(selectedObject.value, selectedObject.currency, selectedObject.params);
+}
+
+function eventLevel() {
+  FB.AppEvents.logEvent(FB.AppEvents.EventNames.ACHIEVED_LEVEL, null, 
+    tutorialEvents[document.getElementById('select_level').value].params);
 }
 
 function eventCustom() {
   var params = {};
-  params["ggparam"] = 11;
-  FB.AppEvents.logEvent(document.getElementById("customField").value, null, params);
-}
-
-function eventLevel() {
-  var params = {};
-  params[FB.AppEvents.ParameterNames.LEVEL] = document.getElementById("levelField").value;
-  params['levelScore'] = 15443;
-  FB.AppEvents.logEvent(FB.AppEvents.EventNames.ACHIEVED_LEVEL, null, params);
-}
-
-function eventAchievement() {
-  var params = {};
-  params[FB.AppEvents.ParameterNames.CONTENT_ID] = '1010';
-  params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Hero collection';
-  params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Collected 10 heroes';
-  FB.AppEvents.logEvent(FB.AppEvents.EventNames.UNLOCKED_ACHIEVEMENT, null, params);
+  params[document.getElementById("custom_event_param_name").value] = document.getElementById("custom_event_param_value").value;
+  FB.AppEvents.logEvent(document.getElementById("custom_event_name").value, null, params);
 }
 
 var tutorialEvents = new Array();
@@ -83,4 +77,83 @@ tutorialEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Tutorial';
 tutorialEvents[2].params[FB.AppEvents.ParameterNames.SUCCESS] = '1';
 tutorialEvents[2].params['Step'] = '3';
 
+var registrationEvents = new Array();
+registrationEvents[0] = new Object();
+registrationEvents[0].displayName = "Facebook";
+registrationEvents[0].params = new Object();
+registrationEvents[0].params[EVENT_PARAM_REGISTRATION_METHOD] = "Facebook";
+registrationEvents[0] = new Object();
+registrationEvents[0].displayName = "Facebook";
+registrationEvents[0].params = new Object();
+registrationEvents[0].params[EVENT_PARAM_REGISTRATION_METHOD] = "Facebook";
+registrationEvents[0] = new Object();
+registrationEvents[0].displayName = "Facebook";
+registrationEvents[0].params = new Object();
+registrationEvents[0].params[EVENT_PARAM_REGISTRATION_METHOD] = "Facebook";
 
+var achievementEvents = new Array();
+achievementEvents[0] = new Object();
+achievementEvents[0].displayName = "Gathered 10000 GOLD";
+achievementEvents[0].params = new Object();
+achievementEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Achievement Gold";
+achievementEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_ID] = "a10001";
+achievementEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = "gold";
+achievementEvents[1] = new Object();
+achievementEvents[1].displayName = "Gathered 10000 WATER";
+achievementEvents[1].params = new Object();
+achievementEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Achievement Water";
+achievementEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_ID] = "a20001";
+achievementEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = "water";
+achievementEvents[2] = new Object();
+achievementEvents[2].displayName = "Gathered 1000000 GOLD";
+achievementEvents[2].params = new Object();
+achievementEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Achievement Gold";
+achievementEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_ID] = "a10002";
+achievementEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = "gold";
+
+var purchaseEvents = new Array();
+purchaseEvents[0] = new Object();
+purchaseEvents[0].displayName = '$1.99 - 100 gems';
+purchaseEvents[0].value = '1.99';
+purchaseEvents[0].currency = 'USD';
+purchaseEvents[0].params = new Object();
+purchaseEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
+purchaseEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '10001';
+purchaseEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '$1.99 - 100 gems';
+
+purchaseEvents[1] = new Object();
+purchaseEvents[1].displayName = '$9.99 - 600 gems';
+purchaseEvents[1].value = '9.99';
+purchaseEvents[1].currency = 'USD';
+purchaseEvents[1].params = new Object();
+purchaseEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
+purchaseEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '10002';
+purchaseEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '$1.99 - 600 gems';
+
+purchaseEvents[2] = new Object();
+purchaseEvents[2].displayName = '$99.99 - 7200 gems';
+purchaseEvents[2].value = '99.99';
+purchaseEvents[2].currency = 'USD';
+purchaseEvents[2].params = new Object();
+purchaseEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
+purchaseEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '10003';
+purchaseEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '$99.99 - 7200 gems';
+
+var levelEvents = new Array();
+levelEvents[0] = new Object();
+levelEvents[0].displayName = 'Level 1';
+levelEvents[0].params = new Object();
+levelEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 1";
+levelEvents[0].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '1';
+
+levelEvents[1] = new Object();
+levelEvents[1].displayName = 'Level 5';
+levelEvents[1].params = new Object();
+levelEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 5";
+levelEvents[1].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '5';
+
+levelEvents[2] = new Object();
+levelEvents[2].displayName = 'Level 10';
+levelEvents[2].params = new Object();
+levelEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 10";
+levelEvents[2].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '10';
