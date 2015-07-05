@@ -25,6 +25,8 @@ function createAppEventButton(container, label, func, data, selector) {
     option.innerHTML = data[i].displayName;
     selectOptions.appendChild(option);
   };
+  var lineBreak = document.createElement('br');
+  container.append(lineBreak);
 }
 
 function eventTutorial() {
