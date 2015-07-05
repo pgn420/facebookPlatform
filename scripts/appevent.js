@@ -5,7 +5,8 @@ function createAppEvents() {
   createAppEventButton(appEventsContainer, 'Registration', 'eventRegistration', registrationEvents, 'select_registration');
   createAppEventButton(appEventsContainer, 'Achievement', 'eventAchievement', achievementEvents, 'select_achievement');
   createAppEventButton(appEventsContainer, 'Purchase', 'eventPurchase', purchaseEvents, 'select_purchase');
-  createAppEventButton(appEventsContainer, 'PlayerLevel', 'eventLevel', levelEvents, 'select_level');
+  createAppEventButton(appEventsContainer, 'SpendCredit', 'eventLevel', levelEvents, 'select_level');
+  createAppEventButton(appEventsContainer, 'PlayerLevel', 'eventSpendCredits', spendCreditEvents, 'select_spend');
 
   createButton(appEventsContainer, 'Custom Event', 'eventCustom');
   $('<input/>').attr({ type: 'text', id: 'custom_event_name', value: 'eventName'}).appendTo(appEventsContainer);
@@ -44,6 +45,11 @@ function eventAchievement() {
 function eventPurchase() {
   var selectedObject = purchaseEvents[document.getElementById('select_purchase').value];
   FB.AppEvents.logPurchase(selectedObject.value, selectedObject.currency, selectedObject.params);
+}
+
+function eventSpendCredits() {
+  var selectedObject = spendCreditEvents[document.getElementById('select_spend').value];
+  FB.AppEvents.logEvent(FB.AppEvents.EventNames.SPENT_CREDITS, selectedObject.value, selectedObject.params);
 }
 
 function eventLevel() {
@@ -157,3 +163,28 @@ levelEvents[2].displayName = 'Level 10';
 levelEvents[2].params = new Object();
 levelEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 10";
 levelEvents[2].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '10';
+
+var spendCreditEvents = new Array();
+spendCreditEvents[0] = new Object();
+spendCreditEvents[0].displayName = '150 Gems - Green Armor';
+spendCreditEvents[0].value = 150;
+spendCreditEvents[0].params = new Object();
+spendCreditEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Hard Currency';
+spendCreditEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '20001';
+spendCreditEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '150 Gems - Green Armor';
+
+spendCreditEvents[1] = new Object();
+spendCreditEvents[1].displayName = '350 Gems - Lightning Shoe';
+spendCreditEvents[1].value = 350;
+spendCreditEvents[1].params = new Object();
+spendCreditEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Hard Currency';
+spendCreditEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '20002';
+spendCreditEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '350 Gems - Lightning Shoe';
+
+spendCreditEvents[2] = new Object();
+spendCreditEvents[2].displayName = '200 Gems - Magic Helm';
+spendCreditEvents[2].value = 200;
+spendCreditEvents[2].params = new Object();
+spendCreditEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Hard Currency';
+spendCreditEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_ID] = '20003';
+spendCreditEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '200 Gems - Magic Helm';
