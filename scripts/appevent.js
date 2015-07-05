@@ -121,7 +121,7 @@ achievementEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = "gold";
 var purchaseEvents = new Array();
 purchaseEvents[0] = new Object();
 purchaseEvents[0].displayName = '$1.99 - 100 gems';
-purchaseEvents[0].value = '1.99';
+purchaseEvents[0].value = 1.99;
 purchaseEvents[0].currency = 'USD';
 purchaseEvents[0].params = new Object();
 purchaseEvents[0].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
@@ -130,7 +130,7 @@ purchaseEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '$1.99 - 100
 
 purchaseEvents[1] = new Object();
 purchaseEvents[1].displayName = '$9.99 - 600 gems';
-purchaseEvents[1].value = '9.99';
+purchaseEvents[1].value = 9.99;
 purchaseEvents[1].currency = 'USD';
 purchaseEvents[1].params = new Object();
 purchaseEvents[1].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
@@ -139,7 +139,7 @@ purchaseEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = '$1.99 - 600
 
 purchaseEvents[2] = new Object();
 purchaseEvents[2].displayName = '$99.99 - 7200 gems';
-purchaseEvents[2].value = '99.99';
+purchaseEvents[2].value = 99.99;
 purchaseEvents[2].currency = 'USD';
 purchaseEvents[2].params = new Object();
 purchaseEvents[2].params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Gems';
