@@ -64,16 +64,19 @@ function eventAchievement() {
 }
 
 var tutorialEvents = new Array();
+tutorialEvents[0] = new Object();
 tutorialEvents[0].displayName = "Step 1";
 tutorialEvents[0].params = new Object();
 tutorialEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Tutorial';
 tutorialEvents[0].params[FB.AppEvents.ParameterNames.SUCCESS] = '1';
 tutorialEvents[0].params['Step'] = '1';
+tutorialEvents[1] = new Object();
 tutorialEvents[1].params = new Object();
 tutorialEvents[1].displayName = "Step 2";
 tutorialEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Tutorial';
 tutorialEvents[1].params[FB.AppEvents.ParameterNames.SUCCESS] = '1';
 tutorialEvents[1].params['Step'] = '2';
+tutorialEvents[2] = new Object();
 tutorialEvents[2].params = new Object();
 tutorialEvents[2].displayName = "Step 3";
 tutorialEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Tutorial';
