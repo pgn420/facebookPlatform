@@ -153,19 +153,19 @@ levelEvents[0] = new Object();
 levelEvents[0].displayName = 'Level 1';
 levelEvents[0].params = new Object();
 levelEvents[0].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 1";
-levelEvents[0].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '1';
+levelEvents[0].params[FB.AppEvents.ParameterNames.LEVEL] = '1';
 
 levelEvents[1] = new Object();
 levelEvents[1].displayName = 'Level 5';
 levelEvents[1].params = new Object();
 levelEvents[1].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 5";
-levelEvents[1].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '5';
+levelEvents[1].params[FB.AppEvents.ParameterNames.LEVEL] = '5';
 
 levelEvents[2] = new Object();
 levelEvents[2].displayName = 'Level 10';
 levelEvents[2].params = new Object();
 levelEvents[2].params[FB.AppEvents.ParameterNames.DESCRIPTION] = "Player Level 10";
-levelEvents[2].params[FB.AppEvents.ParameterNames.ACHIEVED_LEVEL] = '10';
+levelEvents[2].params[FB.AppEvents.ParameterNames.LEVEL] = '10';
 
 var spendCreditEvents = new Array();
 spendCreditEvents[0] = new Object();
