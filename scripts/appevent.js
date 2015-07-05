@@ -44,6 +44,7 @@ function eventAchievement() {
 
 function eventPurchase() {
   var selectedObject = purchaseEvents[document.getElementById('select_purchase').value];
+  console.log(selectedObject);
   FB.AppEvents.logPurchase(selectedObject.value, selectedObject.currency, selectedObject.params);
 }
 
