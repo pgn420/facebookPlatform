@@ -8,8 +8,8 @@ function createAppEvents() {
   for (var i = 0; i < tutorialEvents.length; i++) {
     var option = document.createElement('option');
     option.value = i;
-    option.innerHTML = tutorialEvents.displayName;
-    select.appendChild(option);
+    option.innerHTML = tutorialEvents[i].displayName;
+    selectTutorial.appendChild(option);
   };
 
   createButton(appEventsContainer, 'Registration', 'eventRegistration');
