@@ -34,12 +34,12 @@ function eventTutorial() {
 
 function eventRegistration() {
     FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_REGISTRATION, null, 
-    tutorialEvents[document.getElementById('select_registration').value].params);
+    registrationEvents[document.getElementById('select_registration').value].params);
 }
 
 function eventAchievement() {
   FB.AppEvents.logEvent(FB.AppEvents.EventNames.UNLOCKED_ACHIEVEMENT, null, 
-    tutorialEvents[document.getElementById('select_achievement').value].params);
+    achievementEvents[document.getElementById('select_achievement').value].params);
 }
 
 function eventPurchase() {
@@ -54,7 +54,7 @@ function eventSpendCredits() {
 
 function eventLevel() {
   FB.AppEvents.logEvent(FB.AppEvents.EventNames.ACHIEVED_LEVEL, null, 
-    tutorialEvents[document.getElementById('select_level').value].params);
+    levelEvents[document.getElementById('select_level').value].params);
 }
 
 function eventCustom() {
