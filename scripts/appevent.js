@@ -5,8 +5,8 @@ function createAppEvents() {
   createAppEventButton(appEventsContainer, 'Registration', 'eventRegistration', registrationEvents, 'select_registration');
   createAppEventButton(appEventsContainer, 'Achievement', 'eventAchievement', achievementEvents, 'select_achievement');
   createAppEventButton(appEventsContainer, 'Purchase', 'eventPurchase', purchaseEvents, 'select_purchase');
-  createAppEventButton(appEventsContainer, 'SpendCredit', 'eventLevel', levelEvents, 'select_level');
-  createAppEventButton(appEventsContainer, 'PlayerLevel', 'eventSpendCredits', spendCreditEvents, 'select_spend');
+  createAppEventButton(appEventsContainer, 'SpendCredit', 'eventSpendCredits', spendCreditEvents, 'select_spend');
+  createAppEventButton(appEventsContainer, 'PlayerLevel', 'eventLevel', levelEvents, 'select_level');
 
   createButton(appEventsContainer, 'Custom Event', 'eventCustom');
   $('<input/>').attr({ type: 'text', id: 'custom_event_name', value: 'eventName'}).appendTo(appEventsContainer);
