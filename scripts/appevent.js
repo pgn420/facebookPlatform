@@ -1,7 +1,17 @@
 function createAppEvents() {
   var appEventsContainer = createSection('App Events', 'app_events_container');
-  createButton(appEventsContainer, 'ActivateApp', 'eventActivateApp');
+
   createButton(appEventsContainer, 'Tutorial', 'eventTutorial');
+  var selectTutorial = document.createElement('select');
+  selectTutorial.id = 'select_tutorial';
+  appEventsContainer.append(selectTutorial);
+  for (var i = 0; i < tutorialEvents.length; i++) {
+    var option = document.createElement('option');
+    option.value = i;
+    option.innerHTML = tutorialEvents.displayName;
+    select.appendChild(option);
+  };
+
   createButton(appEventsContainer, 'Registration', 'eventRegistration');
   createButton(appEventsContainer, 'Achievement', 'eventAchievement');
   createButton(appEventsContainer, 'Purchase', 'eventPurchase');
@@ -14,18 +24,8 @@ function createAppEvents() {
   $('<input/>').attr({ type: 'text', id: 'levelField', value: 'Dungeon 1'}).appendTo(appEventsContainer);
 }
 
-function eventActivateApp() {
-  FB.AppEvents.activateApp();
-}
-
-function eventTutorial() {  
-  var params = {};
-  params[FB.AppEvents.ParameterNames.CONTENT_ID] = 't001';
-  params[FB.AppEvents.ParameterNames.CONTENT_TYPE] = 'Tutorial';
-  params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Step 1';
-  params[FB.AppEvents.ParameterNames.SUCCESS] = '1'; // i feel this param is not necessary
-
-  FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_TUTORIAL, null, params);
+function eventTutorial() {
+  FB.AppEvents.logEvent(FB.AppEvents.EventNames.COMPLETED_TUTORIAL, null, tutorialEvents[document.getElementById('select_tutorial').value].params);
 }
 
 function eventRegistration() {
@@ -62,3 +62,14 @@ function eventAchievement() {
   params[FB.AppEvents.ParameterNames.DESCRIPTION] = 'Collected 10 heroes';
   FB.AppEvents.logEvent(FB.AppEvents.EventNames.UNLOCKED_ACHIEVEMENT, null, params);
 }
+
+var tutorialEvents = new Array();
+tutorialEvents[0].displayName = "Step 1";
+tutorialEvents[0].params = {FB.AppEvents.ParameterNames.DESCRIPTION:'Tutorial', FB.AppEvents.ParameterNames.SUCCESS:'1', 'Step':'1'};
+tutorialEvents[1].displayName = "Step 2";
+tutorialEvents[1].params = {FB.AppEvents.ParameterNames.DESCRIPTION:'Tutorial', FB.AppEvents.ParameterNames.SUCCESS:'1', 'Step':'2'};
+tutorialEvents[2].displayName = "Step 3";
+tutorialEvents[2].params = {FB.AppEvents.ParameterNames.DESCRIPTION:'Tutorial', FB.AppEvents.ParameterNames.SUCCESS:'1', 'Step':'3'};
+
+
+
