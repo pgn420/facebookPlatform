@@ -19,7 +19,7 @@ function init() {
     });
 
     if (response.status === 'connected') {
-      console.log('response ' + response);
+      console.log('signedRequest ' + response.authResponse.authResponse);
       console.log('Access Token: ' + response.authResponse.accessToken);
       gAccessToken = response.authResponse.accessToken;
       gPlayerFBID = response.authResponse.userID;
