@@ -33,7 +33,7 @@
       xfbml: true,
       version: 'v2.2' // use version 2.0
     });
-
+init();
     FB.login(function(response) {
       if (response.authResponse) {        
         init();
