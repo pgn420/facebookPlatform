@@ -26,7 +26,6 @@ function init() {
       console.log("player id " + gPlayerFBID);
       buildProfile(gPlayerFBID);
    }
-   
+   createMenu();
  });
- createMenu();
 }
