@@ -25,7 +25,9 @@ function init() {
       gPlayerFBID = response.authResponse.userID;
       console.log("player id " + gPlayerFBID);
       buildProfile(gPlayerFBID);
+      
+      createMenu();
    }
-   createMenu();
+   
  });
 }

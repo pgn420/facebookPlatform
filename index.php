@@ -13,7 +13,7 @@
 </head>
 <body>
   <div id="fb-root"></div>
-  <script src="//www.facebook.com/assets.php/en_US/sdk.js"></script>
+  <script src="//www.facebook.com/assets.php/en_US/sdk/debug.js"></script>
   <div id="stage"></div>
   <div class="fb-like" data-href="http://apps.facebook.com/platfom" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
   <script src="scripts/entryPoint.js"></script>
@@ -33,7 +33,7 @@
       xfbml: true,
       version: 'v2.2' // use version 2.0
     });
-init();
+
     FB.login(function(response) {
       if (response.authResponse) {        
         init();
